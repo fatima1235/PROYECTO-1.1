@@ -12,12 +12,12 @@ public class Program
 		Arduino.DataBits=8;
 		Arduino.Handshake=Handshake.None;
 		Arduino.RtsEnable=true;
-		
+		Arduino.IsOpen();
 		
 		if(Arduino.IsOpen)
 		{
 			Console.WriteLine("Com abierto");
-			byte[]data = Enconding.ASCII.GetBytes("z");
+			byte[]data = Encoding.ASCII.GetBytes("z");
 			Arduino.Write(data, 0, data.Length);
 			
 			Arduino.Write("i");
@@ -30,7 +30,7 @@ public class Program
 		if(Arduino.IsOpen)
 		{
 			Console.WriteLine("Com abierto");
-			byte[]data = Enconding.ASCII.GetBytes("p");
+			byte[]data = Encoding.ASCII.GetBytes("p");
 			Arduino.Write(data, 0, data.Length);
 			
 			Arduino.Write("l");
@@ -42,7 +42,7 @@ public class Program
 		if(Arduino.IsOpen)
 		{
 			Console.WriteLine("Com abierto");
-			byte[]data = Enconding.ASCII.GetBytes("k");
+			byte[]data = Encoding.ASCII.GetBytes("k");
 			Arduino.Write(data, 0, data.Length);
 			
 			Arduino.Write("f");
