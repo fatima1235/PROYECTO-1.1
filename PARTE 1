@@ -1,0 +1,43 @@
+using System;
+using System.IO.Ports;
+
+public class Program
+{
+	static char [,] datos=new Char[3,3];
+	static SerialPort Arduino=new SerialPort("COMS",9600);
+	public static void Main()
+	{
+		Arduino.Parity=Parity.None;
+		Arduino.StopBits=StopBits.One;
+		Arduino.DataBits=8;
+		Arduino.Handshake=Handshake.None;
+		Arduino.RtsEnable=true;
+		
+		if(Arduino.IsOpen)
+		{
+			Console.WriteLine("Com abierto");
+			byte[]data = Enconding.ASCII.GetBytes("z");
+			Arduino.Write(data, 0, data.Length);
+			
+			Arduino.Write("i");
+		}
+		else
+		{
+			Console.WriteLine("Com cerrado");
+		}
+	
+		if(Arduino.IsOpen)
+		{
+			Console.WriteLine("Com abierto");
+			byte[]data = Enconding.ASCII.GetBytes("p");
+			Arduino.Write(data, 0, data.Length);
+			
+			Arduino.Write("l");
+		}
+		else
+		{
+			Console.WriteLine("Com cerrado");
+		}
+	}
+}
+	
