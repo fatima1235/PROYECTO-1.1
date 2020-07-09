@@ -4,7 +4,7 @@ using System.IO.Ports;
 public class Program
 {
 	static char [,] datos=new Char[3,3];
-	static SerialPort Arduino=new SerialPort("COMS",9600);
+	static SerialPort Arduino=new SerialPort("COM5",9600);
 	public static void Main()
 	{
 		Arduino.Parity=Parity.None;
@@ -12,6 +12,7 @@ public class Program
 		Arduino.DataBits=8;
 		Arduino.Handshake=Handshake.None;
 		Arduino.RtsEnable=true;
+		
 		
 		if(Arduino.IsOpen)
 		{
@@ -38,6 +39,19 @@ public class Program
 		{
 			Console.WriteLine("Com cerrado");
 		}
+		if(Arduino.IsOpen)
+		{
+			Console.WriteLine("Com abierto");
+			byte[]data = Enconding.ASCII.GetBytes("k");
+			Arduino.Write(data, 0, data.Length);
+			
+			Arduino.Write("f");
+		}
+		else
+		{
+			Console.WriteLine("Com cerrado");
+		}
+		
 	}
 }
-	
+		
