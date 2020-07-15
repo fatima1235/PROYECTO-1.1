@@ -26,7 +26,7 @@ namespace Parte2_Arduino
 
  
 
-            Arduino = Open();
+            Arduino.Open();
             // Grupo de Trabajo: Fatima Hernandez, Sofia Sabán, Keyli Solis
             do
             {
@@ -38,13 +38,7 @@ namespace Parte2_Arduino
                 Console.WriteLine("5. Salir" );
                 num = Convert.ToInt32(Console.ReadLine());
                 Console.Clear();
-
- 
-
-                Arduino.Open();
-
- 
-
+                
                 if (num == 1)
                 {
                     Console.WriteLine("Com abierto");
@@ -55,7 +49,8 @@ namespace Parte2_Arduino
                 else if(num == 2)
                 {
                     Console.WriteLine("Com cerrado");
-                    Console.ReadLine();
+                    byte[] data = Encoding.ASCII.GetBytes("i");
+                    Arduino.Write(data, 0, data.Length);
                     num = 1;
                     Console.Clear();
                 }
@@ -67,17 +62,14 @@ namespace Parte2_Arduino
                     Console.WriteLine("Com abierto");
                     byte[] data1 = Encoding.ASCII.GetBytes("p");
                     Arduino.Write(data1, 0, data1.Length);
-
- 
-
-                    Console.ReadLine();
                     num = 1;
                     Console.Clear();
                 }
                 else if (num==4)
                 {
                     Console.WriteLine("Com cerrado");
-                    Console.ReadLine();
+                    byte[] data = Encoding.ASCII.GetBytes("l");
+                    Arduino.Write(data, 0, data.Length);
                     num = 1;
                     Console.Clear();
                 }
